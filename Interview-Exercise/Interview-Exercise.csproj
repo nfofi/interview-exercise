@@ -43,7 +43,9 @@
     <Compile Include="Country.cs" />
     <Compile Include="CountryCodeRepository.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="FileIO.cs" />
     <Compile Include="IDatabase.cs" />
+    <Compile Include="IFileIO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

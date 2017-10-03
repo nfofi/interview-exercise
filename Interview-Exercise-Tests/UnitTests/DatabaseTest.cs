@@ -19,7 +19,8 @@ namespace Interview_Exercise_Tests.UnitTests
 
             protected override void Act()
             {
-                _actualResult = new Database().Exists(_country.Code);
+                _actualResult = new Database(new FileIO()).Exists(_country.Code);
+
             }
 
             [Test]
@@ -33,12 +34,31 @@ namespace Interview_Exercise_Tests.UnitTests
         {
             //would check against DummyData to return true if Exists had full implementation
         }
-
-
-        //for remaining cases, give appropriate DummyData so we're not testing Exists
+        
         public class WhenTryingToInsertANewCountry : TestFixtureBase
         {
-            
+            private IFileIO _fileIo;
+            private Country _country;
+
+            protected override void Arrange()
+            {
+                _country = new Country("Mex", "Mexico");
+
+                _fileIo = Mock<IFileIO>();
+                _fileIo.Expect(x => x.WriteToFile(Arg<string>.Is.Anything, Arg<string[]>.Is.Anything));
+            }
+
+            protected override void Act()
+            {
+                var database = new Database(_fileIo);
+                database.Insert(_country);
+            }
+
+            [Test]
+            public void Should_have_used_the_dependency()
+            {
+                _fileIo.AssertWasCalled(x => x.WriteToFile(Arg<string>.Is.Anything, Arg<string[]>.Is.Anything), y => y.Repeat.Once());
+            }
         }
 
         public class WhenTryingToInsertAnExistingCountry : TestFixtureBase

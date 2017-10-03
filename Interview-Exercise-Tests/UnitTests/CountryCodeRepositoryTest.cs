@@ -98,5 +98,35 @@ namespace Interview_Exercise_Tests.UnitTests
             //expectation: Database Clear was called
         }
 
+        #region Integration Tests
+
+        //Integration: If we start with CountryCodeRepository.Add, do we make it all the way to FileIO.WriteToFile
+        public class WhenAddingANewCountry : TestFixtureBase
+        {
+            private Country _country;
+            private IFileIO _fileIo;
+
+            protected override void Arrange()
+            {
+                _country = new Country("Usa", "United States");
+
+                _fileIo = Mock<IFileIO>();
+                _fileIo.Expect(x => x.WriteToFile(Arg<string>.Is.Anything, Arg<string[]>.Is.Anything));
+            }
+
+            protected override void Act()
+            {
+                CountryCodeRepository repo = new CountryCodeRepository(new Database(_fileIo));
+                repo.Add(_country);
+            }
+
+            [Test]
+            public void Should_have_added_new_country()
+            {
+                _fileIo.AssertWasCalled(x => x.WriteToFile(Arg<string>.Is.Anything, Arg<string[]>.Is.Anything), y => y.Repeat.Once());
+            }
+        }
+        #endregion
+
     }
 }

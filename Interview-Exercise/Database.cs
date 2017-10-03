@@ -6,6 +6,12 @@ namespace Interview_Exercise
     public class Database : IDatabase
     {
         private string dataPath = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "Interview-Exercise");
+        private IFileIO _fileIo;
+
+        public Database(IFileIO fileIo)
+        {
+            _fileIo = fileIo;
+        }
 
         public bool Exists(string countryCode)
         {
@@ -25,8 +31,8 @@ namespace Interview_Exercise
             if (!Exists(country.Code))
             {
                 string file = dataPath + "\\" + country.Code[0] + ".csv";
-                string[] lines = {country.Code + "," + country.Name};
-                File.AppendAllLines(file, lines);
+                string[] data = {country.Code + "," + country.Name};
+                _fileIo.WriteToFile(file, data);
             }
             else
             {
