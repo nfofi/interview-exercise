@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Interview_Exercise
 {
     public class CountryCodeRepository
@@ -11,8 +13,16 @@ namespace Interview_Exercise
         }
 
         public void Add(Country country)
-        {         
-           _database.Insert(country);
+        {
+            try
+            {
+                _database.Insert(country);
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding country: " + ex);
+            }
         }
 
         public void Update(Country country)
