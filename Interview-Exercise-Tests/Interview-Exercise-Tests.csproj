@@ -48,9 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTests\DummyData.cs" />
+    <Compile Include="IDummyData.cs" />
     <Compile Include="IntegrationTests\SampleIntegrationTest.cs" />
     <Compile Include="TestFixtureBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\CountryCodeRepositoryTest.cs" />
+    <Compile Include="UnitTests\DatabaseTest.cs" />
     <Compile Include="UnitTests\SampleTest.cs" />
   </ItemGroup>
   <ItemGroup>
