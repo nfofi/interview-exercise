@@ -12,48 +12,30 @@ namespace Interview_Exercise
 
         public void Add(Country country)
         {         
-            //retrieve correct file path
-            //check country code
-            //if exists
-            //throw exception
-            //else
-            //insert into CSV
+           _database.Insert(country);
         }
 
         public void Update(Country country)
         {
-            //retrieve correct file path
-            //check country code
-            //if not exists
-            //throw exception
-            //else
-            //update into CSV
+            //call data access Update
         }
 
         public void Delete (string countryCode)
         {
-            //retrieve correct file path
-            //check country code
-            //if not exists
-            //throw exception
-            //else
-            //remove from CSV
+            //call data access Remove 
         }
 
         public Country Get(string countryCode)
         {
-            //retrieve correct file path
-            //check country code
-            //if not exists
-            //throw exception
-            //else
-            //return country
+            //call data access Read
+
+            //this return exists to avoid compile errors
             return new Country();
         }
 
         public void Clear()
         {
-            //delete all files
+            //call data access Clear
         }
     }
 }
