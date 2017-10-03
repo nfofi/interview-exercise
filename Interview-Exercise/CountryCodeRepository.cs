@@ -27,7 +27,14 @@ namespace Interview_Exercise
 
         public void Update(Country country)
         {
-            //call data access Update
+            try
+            {
+                _database.Update(country);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating country: " + ex);
+            }
         }
 
         public void Delete (string countryCode)

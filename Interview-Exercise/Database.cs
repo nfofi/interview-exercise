@@ -13,6 +13,8 @@ namespace Interview_Exercise
             //open file with name countryCode[0].csv in data path
             //check lines for countryCode
             //(this method is specific to Database.cs because another storage system (e.g. an actual database) might not need this check.)
+
+            //returning false automatically for the sake of Add implementation
             return false;
         }
 
